@@ -17,8 +17,8 @@ export class MulticallPlugin extends Web3PluginBase {
   private _multicallContract?: Contract<typeof Multicall3_ABI>;
 
   public constructor(options?: {
-    contractAddress?: Address;
     pluginNamespace?: string;
+    contractAddress?: Address;
   }) {
     super();
 
