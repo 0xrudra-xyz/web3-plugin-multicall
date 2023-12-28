@@ -1,6 +1,6 @@
 {
   "name": "@rudra-xyz/web3-plugin-multicall",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A web3.js 4.x Plugin for Interacting With Multicall Contract",
   "author": "rudra",
   "main": "lib/index.js",

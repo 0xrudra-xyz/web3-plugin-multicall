@@ -14,46 +14,56 @@ The Multicall Web3.js Plugin enhances the functionality of the Web3.js library, 
 
 > Note: Make sure you have installed the [web3](https://www.npmjs.com/package/web3) version 4.0.3 or above.
 
+
 ```bash
-yarn add @rudra-xyz/web3-plugin-chainlink
+yarn add @rudra-xyz/web3-plugin-multicall
 ```
 
 ## Basic Usage
 
+This plugin completely supports the [Multicall3 contract functions](https://github.com/mds1/multicall/blob/main/src/Multicall3.sol).<br>
+For detailed instructions on how to use the Multicall3 contract, please refer to [this repo](https://github.com/mds1/multicall?tab=readme-ov-file#usage).
+
+
 ```typescript
-import { Web3, Web3Eth, core } from "web3";
+import { Web3 } from "web3";
 import { MulticallPlugin } from '@rudra-xyz/web3-plugin-multicall';
 
+import { ERC20_ABI } from "./abis/erc20";
+
 const main = async () => {
-    const web3 = new Web3("http://127.0.0.1:8545");
+    const web3 = new Web3("https://eth.public-rpc.com");
     web3.registerPlugin(new MulticallPlugin());
 
     const erc20 = new web3.eth.Contract(
         ERC20_ABI,
-        "0x0000000000000000000000000000000000000000",
+        "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984", // UNI Token on Ethereum mainnet
     );
 
     const calls = [
         {
             target: web3.multicall.contractAddress,
-            callData: web3.multicall.getBasefee().encodeABI(),
+            callData: web3.multicall.getLastBlockHash().encodeABI(),
         },
         {
             target: erc20.options.address!,
-            callData: erc20.methods.symbol().encodeABI(),
+            callData: erc20.methods.totalSupply().encodeABI(),
         },
     ];
 
     const results = await web3.multicall.aggregate(calls).call();
 
-    console.log(results);
+    console.log(results.returnData)
+    /*
+      [
+        '0x6471e50c10d51e141a41fdaebe5e3a4ec76deac3534009ab7d009b0eab6dcfba',
+        '0x0000000000000000000000000000000000000000033b2e3c9fd0803ce8000000'
+      ]
+    */
 };
 
 main();
 ```
-
-This plugin completely supports the [Multicall3 contract functions](https://github.com/mds1/multicall/blob/main/src/Multicall3.sol).<br>
-For detailed instructions on how to use the Multicall3 contract, please refer to [this repo](https://github.com/mds1/multicall?tab=readme-ov-file#usage).
 
 
 ## Reference
