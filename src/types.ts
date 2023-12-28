@@ -17,3 +17,16 @@ export type Call = {
   target: Address;
   callData: string;
 };
+
+export type Call3 = {
+  target: Address;
+  allowFailure?: boolean;
+  callData: string;
+};
+
+export type Call3Value = {
+  target: Address;
+  allowFailure?: boolean;
+  value?: string;
+  callData: string;
+};
