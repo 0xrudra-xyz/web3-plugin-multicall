@@ -1,26 +1,49 @@
-import { Address, ContractAbi, Web3PluginBase } from "web3";
-import { Multicall3ABI } from "./multicall3_abi";
+import { Address, Web3PluginBase, Contract } from "web3";
+
+import { Multicall3_ABI } from "./multicall3_abi";
 import { MULTICALL3_ADDRESS } from "./constants";
+import {
+  Call,
+  Multicall3ContractMethodObjects as MethodObjects,
+} from "./types";
 
 export class MulticallPlugin extends Web3PluginBase {
-  public multicallAddress: Address;
   public pluginNamespace: string;
-  public defaultMulticallAbi: ContractAbi;
+  public contractAddress: Address;
+
+  private _multicallContract?: Contract<typeof Multicall3_ABI>;
 
   public constructor(options?: {
-    mulitcallAddress?: Address;
+    contractAddress?: Address;
     pluginNamespace?: string;
-    defaultMulticallAbi?: ContractAbi;
   }) {
     super();
 
-    this.multicallAddress = options?.mulitcallAddress ?? MULTICALL3_ADDRESS;
     this.pluginNamespace = options?.pluginNamespace ?? "multicall";
-    this.defaultMulticallAbi = options?.defaultMulticallAbi ?? Multicall3ABI;
+    this.contractAddress = options?.contractAddress ?? MULTICALL3_ADDRESS;
   }
 
-  public test(param: string): void {
-    console.log(param);
+  public aggregate(calls: Call[]): MethodObjects["aggregate"] {
+    return this._getMulticallContract().methods.aggregate(
+      calls
+    ) as unknown as MethodObjects["aggregate"];
+  }
+
+  public getBasefee(): MethodObjects["getBasefee"] {
+    return this._getMulticallContract().methods.getBasefee() as unknown as MethodObjects["getBasefee"];
+  }
+
+  private _getMulticallContract(): Contract<typeof Multicall3_ABI> {
+    if (this._multicallContract === undefined) {
+      this._multicallContract = new Contract(
+        Multicall3_ABI,
+        this.contractAddress
+      );
+
+      this._multicallContract.link(this);
+    }
+
+    return this._multicallContract;
   }
 }
 
