@@ -1,12 +1,13 @@
 {
-  "name": "web3-plugin-template",
-  "version": "1.0.0",
-  "description": "Template plugin to extend web3.js with additional methods",
+  "name": "@rudra-xyz/web3-plugin-multicall",
+  "version": "0.0.2",
+  "description": "A web3.js 4.x Plugin for Interacting With Multicall Contract",
+  "author": "rudra",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "homepage": "https://github.com/web3/web3.js-plugin-template#readme",
+  "homepage": "https://github.com/0xrudra-xyz/web3-plugin-multicall",
   "bugs": {
-    "url": "https://github.com/web3/web3.js-plugin-template/issues"
+    "url": "https://github.com/0xrudra-xyz/web3-plugin-multicall"
   },
   "scripts": {
     "lint": "eslint '{src,test}/**/*.ts'",
@@ -14,12 +15,17 @@
     "test": "jest --config=./test/jest.config.js"
   },
   "contributors": [
-    "ChainSafe <info@chainsafe.io>"
+    "rudra <rudra.crypto.rudra@gmail.com>"
+  ],
+  "keywords": [
+    "multicall",
+    "web3 plugin",
+    "web3.js plugin"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:web3/web3.js-plugin-template.git"
+    "url": "https://github.com/0xrudra-xyz/web3-plugin-multicall.git"
   },
   "devDependencies": {
     "@chainsafe/eslint-config": "^2.0.0",
