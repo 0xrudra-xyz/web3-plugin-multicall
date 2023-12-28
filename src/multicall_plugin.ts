@@ -1,9 +1,9 @@
 import { Web3PluginBase, Contract } from "web3";
 import type { Address } from "web3";
 
-import { Multicall3_ABI } from "./multicall3_abi";
+import { Multicall3_ABI } from "./abis/multicall3";
 import { MULTICALL3_ADDRESS } from "./constants";
-import {
+import type {
   Call,
   Call3,
   Call3Value,
@@ -85,6 +85,46 @@ export class MulticallPlugin extends Web3PluginBase {
 
   public getBasefee(): MethodObjects["getBasefee"] {
     return this._getMulticallContract().methods.getBasefee() as unknown as MethodObjects["getBasefee"];
+  }
+
+  public getBlockHash(blockNumber: string): MethodObjects["getBlockHash"] {
+    return this._getMulticallContract().methods.getBlockHash(
+      blockNumber
+    ) as unknown as MethodObjects["getBlockHash"];
+  }
+
+  public getBlockNumber(): MethodObjects["getBlockNumber"] {
+    return this._getMulticallContract().methods.getBlockNumber() as unknown as MethodObjects["getBlockNumber"];
+  }
+
+  public getChainId(): MethodObjects["getChainId"] {
+    return this._getMulticallContract().methods.getChainId() as unknown as MethodObjects["getChainId"];
+  }
+
+  public getCurrentBlockCoinbase(): MethodObjects["getCurrentBlockCoinbase"] {
+    return this._getMulticallContract().methods.getCurrentBlockCoinbase() as unknown as MethodObjects["getCurrentBlockCoinbase"];
+  }
+
+  public getCurrentBlockDifficulty(): MethodObjects["getCurrentBlockDifficulty"] {
+    return this._getMulticallContract().methods.getCurrentBlockDifficulty() as unknown as MethodObjects["getCurrentBlockDifficulty"];
+  }
+
+  public getCurrentBlockGasLimit(): MethodObjects["getCurrentBlockGasLimit"] {
+    return this._getMulticallContract().methods.getCurrentBlockGasLimit() as unknown as MethodObjects["getCurrentBlockGasLimit"];
+  }
+
+  public getCurrentBlockTimestamp(): MethodObjects["getCurrentBlockTimestamp"] {
+    return this._getMulticallContract().methods.getCurrentBlockTimestamp() as unknown as MethodObjects["getCurrentBlockTimestamp"];
+  }
+
+  public getEthBalance(address: string): MethodObjects["getEthBalance"] {
+    return this._getMulticallContract().methods.getEthBalance(
+      address
+    ) as unknown as MethodObjects["getEthBalance"];
+  }
+
+  public getLastBlockHash(): MethodObjects["getLastBlockHash"] {
+    return this._getMulticallContract().methods.getLastBlockHash() as unknown as MethodObjects["getLastBlockHash"];
   }
 
   private _getMulticallContract(): Contract<typeof Multicall3_ABI> {

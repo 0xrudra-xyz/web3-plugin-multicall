@@ -1,7 +1,7 @@
 import { ContractMethodsInterface } from "web3-eth-contract";
 import { Address } from "web3";
 
-import { Multicall3_ABI } from "./multicall3_abi";
+import { Multicall3_ABI } from "./abis/multicall3";
 
 export type Multicall3ContractMethodsInterface = ContractMethodsInterface<
   typeof Multicall3_ABI
