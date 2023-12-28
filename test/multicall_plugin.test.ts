@@ -1,6 +1,7 @@
 import { Web3, Web3Eth, core } from "web3";
 import type { Contract } from "web3";
 
+import { MULTICALL3_ADDRESS, MulticallPlugin } from "../src";
 import {
   AGGREGATE3_FUNCTION_FRAGMENT,
   AGGREGATE3_VALUE_FUNCTION_FRAGMENT,
@@ -8,11 +9,9 @@ import {
   BLOCK_AND_AGGREGATE_FUNCTION_FRAGMENT,
   GET_BLOCK_HASH_FUNCTION_FRAGMENT,
   GET_ETH_BALANCE_FUNCTION_FRAGMENT,
-  MULTICALL3_ADDRESS,
-  MulticallPlugin,
   TRY_AGGREGATE_FUNCTION_FRAGMENT,
   TRY_BLOCK_AND_AGGREGATE_FUNCTION_FRAGMENT,
-} from "../src";
+} from "../src/abis/multicall3";
 import { ERC20_ABI } from "./abis/erc20";
 
 describe("MulticallPlugin Tests", () => {

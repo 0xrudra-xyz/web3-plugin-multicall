@@ -1,12 +1,11 @@
-import { ContractMethodsInterface } from "web3-eth-contract";
-import { Address } from "web3";
+import type { ContractMethodsInterface } from "web3-eth-contract";
+import type { Address } from "web3";
 
-import { Multicall3_ABI } from "./abis/multicall3";
+import type { Multicall3_ABI } from "./abis/multicall3";
 
-export type Multicall3ContractMethodsInterface = ContractMethodsInterface<
+type Multicall3ContractMethodsInterface = ContractMethodsInterface<
   typeof Multicall3_ABI
 >;
-
 export type Multicall3ContractMethodObjects = {
   [K in keyof Multicall3ContractMethodsInterface]: ReturnType<
     Multicall3ContractMethodsInterface[K]

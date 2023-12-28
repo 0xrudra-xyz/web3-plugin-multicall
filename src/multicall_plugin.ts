@@ -28,7 +28,7 @@ export class MulticallPlugin extends Web3PluginBase {
 
   public aggregate(calls: Call[]): MethodObjects["aggregate"] {
     return this._getMulticallContract().methods.aggregate(
-      calls
+      calls,
     ) as unknown as MethodObjects["aggregate"];
   }
 
@@ -39,12 +39,12 @@ export class MulticallPlugin extends Web3PluginBase {
     }));
 
     return this._getMulticallContract().methods.aggregate3(
-      calls
+      calls,
     ) as unknown as MethodObjects["aggregate3"];
   }
 
   public aggregate3Value(
-    _calls: Call3Value[]
+    _calls: Call3Value[],
   ): MethodObjects["aggregate3Value"] {
     const calls = _calls.map((call) => ({
       ...call,
@@ -53,33 +53,33 @@ export class MulticallPlugin extends Web3PluginBase {
     }));
 
     return this._getMulticallContract().methods.aggregate3Value(
-      calls
+      calls,
     ) as unknown as MethodObjects["aggregate3Value"];
   }
 
   public blockAndAggregate(calls: Call[]): MethodObjects["blockAndAggregate"] {
     return this._getMulticallContract().methods.blockAndAggregate(
-      calls
+      calls,
     ) as unknown as MethodObjects["blockAndAggregate"];
   }
 
   public tryAggregate(
     requireSuccess: boolean,
-    calls: Call[]
+    calls: Call[],
   ): MethodObjects["tryAggregate"] {
     return this._getMulticallContract().methods.tryAggregate(
       requireSuccess,
-      calls
+      calls,
     ) as unknown as MethodObjects["tryAggregate"];
   }
 
   public tryBlockAndAggregate(
     requireSuccess: boolean,
-    calls: Call[]
+    calls: Call[],
   ): MethodObjects["tryBlockAndAggregate"] {
     return this._getMulticallContract().methods.tryBlockAndAggregate(
       requireSuccess,
-      calls
+      calls,
     ) as unknown as MethodObjects["tryBlockAndAggregate"];
   }
 
@@ -89,7 +89,7 @@ export class MulticallPlugin extends Web3PluginBase {
 
   public getBlockHash(blockNumber: string): MethodObjects["getBlockHash"] {
     return this._getMulticallContract().methods.getBlockHash(
-      blockNumber
+      blockNumber,
     ) as unknown as MethodObjects["getBlockHash"];
   }
 
@@ -119,7 +119,7 @@ export class MulticallPlugin extends Web3PluginBase {
 
   public getEthBalance(address: string): MethodObjects["getEthBalance"] {
     return this._getMulticallContract().methods.getEthBalance(
-      address
+      address,
     ) as unknown as MethodObjects["getEthBalance"];
   }
 
@@ -131,7 +131,7 @@ export class MulticallPlugin extends Web3PluginBase {
     if (this._multicallContract === undefined) {
       this._multicallContract = new Contract(
         Multicall3_ABI,
-        this.contractAddress
+        this.contractAddress,
       );
 
       this._multicallContract.link(this);

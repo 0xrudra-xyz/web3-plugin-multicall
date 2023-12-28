@@ -1,4 +1,4 @@
-import { Address } from "web3";
+import type { Address } from "web3";
 
 // the address of the Multicall3 contract which is deployed on over 70+ chains with the same address
 // ref: https://www.multicall3.com/
